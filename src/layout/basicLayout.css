@@ -1,0 +1,26 @@
+nav {
+    position: relative;
+    width: 100%;
+}
+
+ul {
+    padding: 10px 0 5px 0;
+    margin: 0;
+    background-color: aliceblue;
+    text-align: left;
+}
+
+li {
+    display: inline-block;
+    padding-right: 5%;
+}
+
+li:first-of-type {
+    padding-left: 1%;
+}
+
+li > a {
+    text-decoration: none;
+    color: cornflowerblue;
+}
+

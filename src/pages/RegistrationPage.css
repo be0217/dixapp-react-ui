@@ -1,0 +1,23 @@
+.form {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 30%;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 40px 5px grey;
+}
+
+input[type='text'], input[type='password'] {
+    display: block;
+    margin: 10px;
+    outline: 0;
+    border: 0;
+    font-size: 20px;
+    text-align: left;
+}
+
+button {
+    display: inline-block;
+    float: right;
+}
