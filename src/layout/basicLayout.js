@@ -1,7 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import { connect } from "react-redux"
+import {connect} from "react-redux"
 import './basicLayout.css';
+import {authorize, logout} from "../actions/authAction";
 
 class BasicLayout extends React.Component {
     constructor(props) {
@@ -9,7 +10,7 @@ class BasicLayout extends React.Component {
     }
 
     render() {
-        const { user, logged } = this.props;
+        const {user, logged} = this.props;
         return (
             <nav>
                 <ul>
@@ -26,8 +27,13 @@ class BasicLayout extends React.Component {
                         <Link to="/users">Users</Link>
                     </li>
                     <li>
-                        { logged ? user : "Not logged"}
+                        {logged ? user : "Not logged"}
                     </li>
+                    {logged &&
+                    <li>
+                        <a className="logout" onClick={() => this.props.logout()}>Log Out</a>
+                    </li>
+                    }
                 </ul>
             </nav>
         );
@@ -35,9 +41,13 @@ class BasicLayout extends React.Component {
 }
 
 const mapStateToProps = state => ({
-   ...state.authReducer
+    ...state.authReducer
 });
 
-export default connect(mapStateToProps)(BasicLayout);
+const mapDispatchToProps = dispatch => ({
+    logout: () => dispatch(logout())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BasicLayout);
 
 

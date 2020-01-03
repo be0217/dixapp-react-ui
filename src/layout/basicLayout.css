@@ -24,3 +24,7 @@ li > a {
     color: cornflowerblue;
 }
 
+a.logout {
+    cursor: pointer;
+}
+

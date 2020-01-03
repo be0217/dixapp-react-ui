@@ -1,5 +1,5 @@
 import { environment } from "../index.js";
-import { AUTHORIZE } from "./actions";
+import {AUTHORIZE, LOGOUT} from "./actions";
 
 export const authorize = (login, password) => dispatch => {
   const { axios } = environment;
@@ -7,7 +7,6 @@ export const authorize = (login, password) => dispatch => {
     email: login,
     password: password
   }).then(data => {
-    console.log(data);
     dispatch({
       type: AUTHORIZE,
       payload: {
@@ -17,4 +16,10 @@ export const authorize = (login, password) => dispatch => {
       }
     })
   })
+};
+
+export const logout = () => dispatch => {
+  dispatch({
+    type: LOGOUT
+  });
 };

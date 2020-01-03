@@ -4,7 +4,13 @@ const instance = axios.create({
   baseURL: 'http://localhost:8000/api'
 });
 
+const socketIO = {
+  response: false,
+  endpoint: 'http://localhost:8000'
+};
+
 
 export default {
-  axios: instance
+  axios: instance,
+  socketIO: socketIO
 };

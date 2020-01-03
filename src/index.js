@@ -7,6 +7,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import env from './environment/env';
 
+
 const store = configureStore();
 
 ReactDOM.render(
@@ -20,6 +21,7 @@ export const environment = env("dev");
 
 // use token when passed
 store.subscribe(() => environment.axios.defaults.headers.common['Authorization'] = `Bearer ${store.getState().authReducer.token}`);
+
 
 
 // If you want your app to work offline and load faster, you can change

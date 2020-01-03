@@ -11,6 +11,8 @@ import {
 import BasicLayout from "./layout/basicLayout";
 import RegistrationPage from "./pages/RegistrationPage";
 import LoginPage from "./pages/LoginPage";
+import PrivateRouter from "./PrivateRouter"
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -35,9 +37,9 @@ export default class App extends React.Component {
               <Route path="/users">
                 <Users/>
               </Route>
-              <Route path="/">
+              <PrivateRouter path="/">
                 <Home/>
-              </Route>
+              </PrivateRouter>
             </Switch>
           </div>
         </div>
