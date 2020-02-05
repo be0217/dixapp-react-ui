@@ -1,7 +1,7 @@
 import React from "react";
-import { connect } from "react-redux";
-import { authorize } from "../actions/authAction";
-import { Redirect } from "react-router-dom"
+import {connect} from "react-redux";
+import {authorize} from "../actions/authAction";
+import {Redirect} from "react-router-dom"
 
 class LoginPage extends React.Component {
 
@@ -27,7 +27,10 @@ class LoginPage extends React.Component {
         <h3>
           Login
         </h3>
-        <form action="javascript:void(0);" onSubmit={() => this.login(email, password)}>
+        <form onSubmit={(e) => {
+          e.preventDefault();
+          this.login(email, password);
+        }}>
           <label htmlFor="email">
             Email
           </label>

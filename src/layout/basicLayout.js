@@ -31,7 +31,7 @@ class BasicLayout extends React.Component {
                     </li>
                     {logged &&
                     <li>
-                        <a className="logout" onClick={() => this.props.logout()}>Log Out</a>
+                        <span className="logout" onClick={() => this.props.logout()}>Log Out</span>
                     </li>
                     }
                 </ul>

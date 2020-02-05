@@ -1,0 +1,11 @@
+.background {
+    position: absolute;
+    width: 100%;
+    height: 50vh;
+}
+
+.card {
+    width: 30%;
+    height: 15%;
+    display: inline-block;
+}

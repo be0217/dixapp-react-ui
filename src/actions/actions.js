@@ -14,3 +14,7 @@ export const chooser = "chooser";
 export const scores = "scores";
 export const error_msg = "error_msg";
 export const disconnect = "disconnect";
+
+export const socketActions = [
+  room_info, chat_msg_local, chat_msg_global, message, room_list, cards_hand, stage, question, answers_cards, chooser, scores, error_msg, disconnect
+];

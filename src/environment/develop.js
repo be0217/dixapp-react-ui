@@ -5,8 +5,7 @@ const instance = axios.create({
 });
 
 const socketIO = {
-  response: false,
-  endpoint: 'http://localhost:8000'
+  endpoint: 'http://localhost:8000/dixio'
 };
 
 

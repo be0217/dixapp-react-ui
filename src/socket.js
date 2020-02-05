@@ -1,27 +1,46 @@
 import socketIOClient from "socket.io-client";
 import {environment} from "./index";
+import {store} from "./index";
+import {socketActions} from "./actions/actions";
+import {save} from "./actions/socketAction";
 
-export default (endpoint, authToken) => {
+export var socket = null;
 
-    const socketIO = socketIOClient(environment.socketIO.endpoint, {
-        query: {
-            token: authToken
-        }
-    });
+const createInstance = (endpoint, authToken) => {
+  const socketIO = socketIOClient(environment.socketIO.endpoint, {
+    query: {
+      auth_token: authToken
+    },
+    response: false
+  });
+  
+  for (let action of socketActions) {
+    socketIO.on(action, data => {
+      store.dispatch({
+        type: action,
+        payload: data
+      });
+    })
+  }
 
-
-    socketIO.on('room_info', (room) => this.room.next(room));
-    socketIO.on('chat_msg_local', (msg) => this.localMsg.next(msg));
-    socketIO.on('chat_msg_global', (msg) => this.globalMsg.next(msg));
-    socketIO.on('message', (msg) => this.serverMsg.next(msg));
-    socketIO.on('room_list', (rooms) => this.roomList.next(rooms));
-    socketIO.on('cards_hand', (hand) => this.hand.next(hand));
-    socketIO.on('stage', (stage) => this.stage.next(stage));
-    socketIO.on('question', (question) => this.question.next(question));
-    socketIO.on('answers_cards', (answers) => this.answers.next(answers));
-    socketIO.on('chooser', (chooser) => this.chooser.next(chooser));
-    socketIO.on('scores', (scores) => this.scores.next(scores));
-    socketIO.on('error_msg', (err) => this.error.next(err));
-    socketIO.on('disconnect', (dc) => this.disconnect.next(dc));
-    return socketIO;
+  socketIO.on("error_msg", (msg) => console.warn(msg));
+  return socketIO;
 };
+
+export const connect = (endpoint, authToken) => {
+  if (!socket) {
+    socket = createInstance(endpoint, authToken);
+  } else {
+    console.error("You are connected to socket right now");
+  }
+};
+
+export const disconnect = () => {
+  if (socket) {
+    socket.disconnect();
+  } else {
+    console.error("You are not connected to socket right now");
+  }
+};
+
+

@@ -12,6 +12,7 @@ import BasicLayout from "./layout/basicLayout";
 import RegistrationPage from "./pages/RegistrationPage";
 import LoginPage from "./pages/LoginPage";
 import PrivateRouter from "./PrivateRouter"
+import DixioPage from "./pages/DixioPage";
 
 
 export default class App extends React.Component {
@@ -38,7 +39,7 @@ export default class App extends React.Component {
                 <Users/>
               </Route>
               <PrivateRouter path="/">
-                <Home/>
+                <DixioPage />
               </PrivateRouter>
             </Switch>
           </div>
@@ -48,9 +49,7 @@ export default class App extends React.Component {
   }
 }
 
-function Home() {
-  return <h2>Home</h2>;
-}
+
 
 function About() {
   return <h2>About</h2>;
