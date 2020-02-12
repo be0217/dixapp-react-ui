@@ -3,6 +3,8 @@ import {connect as connectSocket, disconnect as disconnectSocket} from "../socke
 import {connect} from "react-redux";
 import {authorize} from "../actions/authAction";
 import {environment} from "../index";
+import './DixioPage.css';
+import Chat from '../components/Chat';
 
 class DixioPage extends React.Component {
 
@@ -19,15 +21,16 @@ class DixioPage extends React.Component {
   render() {
     return (
       <div className="page">
+        <Chat />
         <div className="background">
 
-          <div className="card first">
-            Lorem ipsum et dolores and stones
-          </div>
+          {/*<div className="card first">*/}
+          {/*  Lorem ipsum et dolores and stones*/}
+          {/*</div>*/}
 
-          <div className="card second">
-            Lorem ipsum and dolores and fires
-          </div>
+          {/*<div className="card second">*/}
+          {/*  Lorem ipsum and dolores and fires*/}
+          {/*</div>*/}
 
         </div>
       </div>

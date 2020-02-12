@@ -7,6 +7,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import env from './environment/env';
 
+export const environment = env("dev");
 
 export const store = configureStore();
 
@@ -17,7 +18,6 @@ ReactDOM.render(
     document.getElementById('root')
 );
 
-export const environment = env("dev");
 
 // use token when passed
 store.subscribe(() => environment.axios.defaults.headers.common['Authorization'] = `Bearer ${store.getState().authReducer.token}`);
