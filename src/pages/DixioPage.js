@@ -22,17 +22,17 @@ class DixioPage extends React.Component {
     return (
       <div className="page">
         <Chat />
-        <div className="background">
+        {/*<div className="background">*/}
 
-          {/*<div className="card first">*/}
-          {/*  Lorem ipsum et dolores and stones*/}
-          {/*</div>*/}
+        {/*  /!*<div className="card first">*!/*/}
+        {/*  /!*  Lorem ipsum et dolores and stones*!/*/}
+        {/*  /!*</div>*!/*/}
 
-          {/*<div className="card second">*/}
-          {/*  Lorem ipsum and dolores and fires*/}
-          {/*</div>*/}
+        {/*  /!*<div className="card second">*!/*/}
+        {/*  /!*  Lorem ipsum and dolores and fires*!/*/}
+        {/*  /!*</div>*!/*/}
 
-        </div>
+        {/*</div>*/}
       </div>
     )
   }

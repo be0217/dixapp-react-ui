@@ -1,8 +1,7 @@
 import socketIOClient from "socket.io-client";
 import {environment} from "./index";
 import {store} from "./index";
-import {socketActions} from "./actions/actions";
-import {save} from "./actions/socketAction";
+import {socketActions, chat_msg_global} from "./actions/actions";
 
 export var socket = null;
 
@@ -38,6 +37,14 @@ export const connect = (endpoint, authToken) => {
 export const disconnect = () => {
   if (socket) {
     socket.disconnect();
+  } else {
+    console.error("You are not connected to socket right now");
+  }
+};
+
+export const sendMessageGlobally = (msg) => {
+  if (socket) {
+    socket.emit(chat_msg_global, msg);
   } else {
     console.error("You are not connected to socket right now");
   }
