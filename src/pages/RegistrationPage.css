@@ -17,7 +17,7 @@ input[type='text'], input[type='password'] {
     text-align: left;
 }
 
-button {
-    display: inline-block;
-    float: right;
-}
+/*button {*/
+/*    display: inline-block;*/
+/*    float: right;*/
+/*}*/

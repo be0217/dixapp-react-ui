@@ -2,7 +2,8 @@ import React from "react";
 import {authorize} from "../actions/authAction";
 import {connect} from "react-redux";
 import './Chat.sass';
-import {sendMessageGlobally} from "../socket";
+import {sendMessageGlobally, sendMessageLocally} from "../socket";
+import {room_info} from "../actions/actions";
 
 export class Chat extends React.Component {
 
@@ -11,23 +12,31 @@ export class Chat extends React.Component {
     this.state = {typedMessage: "", chatType: "global"};
   }
 
-  render() {
-    const {chat_msg_global, chat_msg_local, room_info} = this.props;
-    const {typedMessage, chatType} = this.state;
-    const activeSwitch = !!room_info;
+  switchType(type) {
+    if(this.props.room_info || type === "global") {
+      this.setState({chatType: type});
+    } else {
+      console.log("Denied change")
+    }
+  }
 
-    const messagesContext = chatType === "global" ? chat_msg_global.map((msg) => <div className="single">
+  render() {
+    const {chat_msg_global, chat_msg_local, className} = this.props;
+    const {typedMessage, chatType} = this.state;
+    const context = chatType === "global" ? chat_msg_global : chat_msg_local;
+
+    const messagesContext = context.map((msg) => <div className="single">
         <span className="owner"> {msg.owner}: </span>
         <span className="msg"> {msg.msg} </span>
-    </div>) : <div> Not implemented yet </div>;
+    </div>);
 
     return (
-      <div className="chatBox">
+      <div className={["chatBox", className || ""].join(" ")}>
           <div className="switcher">
-              <div className={['switch', chatType === "global" ? "active" : ""].join(" ")}>
+              <div className={['switch', chatType === "global" ? "active" : ""].join(" ")} onClick={() => this.switchType("global")}>
                   Global Chat
               </div>
-              <div className={['switch', chatType === "local" ? "active" : ""].join(" ")}>
+              <div className={['switch', chatType === "local" ? "active" : ""].join(" ")}  onClick={() => this.switchType("local")}>
                   Local Chat
               </div>
           </div>
@@ -37,7 +46,11 @@ export class Chat extends React.Component {
         </div>
         <form onSubmit={(e) => {
           e.preventDefault();
-          sendMessageGlobally(typedMessage);
+          if(chatType === "global") {
+            sendMessageGlobally(typedMessage);
+          } else {
+            sendMessageLocally(typedMessage);
+          }
           this.setState({typedMessage: ""});
         }}>
           <input type="text" onChange={(e) => this.setState({typedMessage: e.target.value})} value={typedMessage}/>
@@ -46,10 +59,6 @@ export class Chat extends React.Component {
     );
   }
 }
-
-// const mapDispatchToProps = dispatch => ({
-//   authorize: (email, password) => dispatch(authorize(email, password))
-// });
 
 const mapStateToProps = state => ({
   ...state.socketReducer
